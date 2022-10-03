@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from "react";
 
-const UpdateTask = ({todo}) => {
+const UpdateTask = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
 
   const updateDescription = async e => {
     e.preventDefault();
     console.log(todo)
     try {
-      const body = {description};
+      const body = { description };
       const response = await fetch(
         `http://localhost:3350/task/${todo.task_id}`,
         {

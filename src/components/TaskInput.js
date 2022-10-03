@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const TaskInput = () => {
 
@@ -8,10 +8,10 @@ const TaskInput = () => {
     const handleSubmit = async e => {
         e.preventDefault();
         try {
-            const body = {description};
+            const body = { description };
             const response = await fetch('http://localhost:3350/task', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             });
             console.log(response);
@@ -36,7 +36,7 @@ const TaskInput = () => {
                     onChange={e => setDescription(e.target.value)}
                 />
                 <button
-                className="">
+                    className="">
                     Add
                 </button>
             </form>
