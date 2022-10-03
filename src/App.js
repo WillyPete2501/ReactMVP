@@ -5,10 +5,10 @@ import ListTask from "./components/ListTask";
 
 function App() {
   return (
-      <div className="container">
-        <TaskInput />
-        <ListTask />
-      </div>
+    <div className="container">
+      <TaskInput />
+      <ListTask />
+    </div>
   );
 }
 
