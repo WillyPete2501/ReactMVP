@@ -48,7 +48,7 @@ const ListTask = () => {
             <tr key={todo.task_id}>
               <td>{todo.task}</td>
               <td>
-                <EditTodo todo={todo} />
+                <UpdateTask todo={todo} />
               </td>
               <td>
                 <button
