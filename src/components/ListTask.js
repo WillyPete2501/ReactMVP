@@ -3,59 +3,59 @@ import UpdateTask from "./UpdateTask";
 
 const ListTask = () => {
   const [todos, setTodos] = useState([]);
-
   const deleteTodo = async id => {
     try {
       const deleteTodo = await fetch(`http://localhost:3350/task/${id}`, {
         method: "DELETE"
       });
-
       setTodos(todos.filter(todo => todo.task_id !== id));
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const getTodos = async () => {
+  const getTasks = async () => {
     try {
       const response = await fetch("http://localhost:3350/task");
       const jsonData = await response.json();
 
       setTodos(jsonData);
-    } catch (err) {
-      console.error(err.message);
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
   useEffect(() => {
-    getTodos();
+    getTasks();
   }, []);
 
   console.log(todos);
-
   return (
     <div>
-      <table className="table mt-5 text-center">
-        <thead>
+      <table className="table mt-5">
+
+        <thead className='h3'>
           <tr>
-            <th>Description</th>
-            <th>Edit</th>
+            <th>Task</th>
+            <th>Update</th>
             <th>Delete</th>
           </tr>
         </thead>
+
         <tbody>
           {todos.map(todo => (
-            <tr key={todo.task_id}>
+            <tr
+              className="h5"
+              key={todo.task_id}>
               <td>{todo.task}</td>
               <td>
                 <UpdateTask todo={todo} />
               </td>
               <td>
                 <button
-                  className="btn btn-danger"
+                  className="delete btn btn-danger"
                   onClick={() => deleteTodo(todo.task_id)}
-                >
-                  Delete
+                >Delete
                 </button>
               </td>
             </tr>

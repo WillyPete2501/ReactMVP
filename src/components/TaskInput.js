@@ -23,21 +23,23 @@ const TaskInput = () => {
     return (
         <div>
             <h1
-                className="text-center mt-5">
-                Task List</h1>
+                className="mt-5 h1 font-weight-bold"
+            >Task List
+            </h1>
             <form
-                className="d-flex mt-5"
+                className="d-flex mt-3"
                 onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="add task"
-                    className="form-control"
+                    className="form-control font-italic"
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
                 <button
-                    className="">
-                    Add
+                    type="button"
+                    className="Add btn btn-info"
+                >Add
                 </button>
             </form>
         </div>

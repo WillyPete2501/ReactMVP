@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 
 const UpdateTask = ({ todo }) => {
   const [description, setDescription] = useState(todo.description);
@@ -22,33 +22,38 @@ const UpdateTask = ({ todo }) => {
   };
 
   return (
-    <Fragment>
+    <div>
       <button
         type="button"
-        className="btn btn-warning"
+        className="btn btn-info"
         data-toggle="modal"
         data-target={`#id${todo.task_id}`}
-      >
-        Edit
+      >Update
       </button>
+
       <div
         className="modal"
         id={`id${todo.task_id}`}
         onClick={() => setDescription(todo.description)}
       >
+
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title">Edit</h4>
+
+              <h2 className="modal-title"
+              >Update</h2>
+
               <button
                 type="button"
                 className="close"
                 data-dismiss="modal"
                 onClick={() => setDescription(todo.description)}
-              >
-                &times;
+              >&times;
               </button>
+
             </div>
+
 
             <div className="modal-body">
               <input
@@ -62,25 +67,16 @@ const UpdateTask = ({ todo }) => {
             <div className="modal-footer">
               <button
                 type="button"
-                className="btn btn-warning"
+                className="UpdateAgain btn btn-info"
                 data-dismiss="modal"
                 onClick={e => updateDescription(e)}
-              >
-                Edit
-              </button>
-              <button
-                type="button"
-                className="btn btn-danger"
-                data-dismiss="modal"
-                onClick={() => setDescription(todo.description)}
-              >
-                Close
+              >Update
               </button>
             </div>
           </div>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 
