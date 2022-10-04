@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 
 const UpdateTask = ({ todo }) => {
-  const [description, setDescription] = useState(todo.description);
+  const [task, setTask] = useState(todo.task);
 
-  const updateDescription = async e => {
-    e.preventDefault();
-    console.log(todo)
+  const updateDescription = async (task_id) => {
     try {
-      const body = { description };
+      const body = { task };
       const response = await fetch(
-        `http://localhost:3350/task/${todo.task_id}`,
+        `http://localhost:3350/task/${task_id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(body)
         }
       );
+      window.location = "/"
     } catch (error) {
       console.error(error.message);
     }
@@ -23,6 +22,7 @@ const UpdateTask = ({ todo }) => {
 
   return (
     <div>
+
       <button
         type="button"
         className="btn btn-info"
@@ -32,52 +32,50 @@ const UpdateTask = ({ todo }) => {
       </button>
 
       <div
-        className="modal"
+        className="modal fade"
         id={`id${todo.task_id}`}
-        onClick={() => setDescription(todo.description)}
       >
-
-        <div className="modal-dialog">
+        <div
+          className="modal-dialog"
+          role="document"
+        >
           <div className="modal-content">
             <div className="modal-header">
 
-              <h2 className="modal-title"
-              >Update</h2>
-
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                onClick={() => setDescription(todo.description)}
-              >&times;
-              </button>
+              <h5>Update Task</h5>
 
             </div>
 
-
             <div className="modal-body">
               <input
-                type="text"
-                className="form-control"
-                value={description}
-                onChange={e => setDescription(e.target.value)}
+                className='form-control'
+                value={task}
+                onChange={(e) => setTask(e.target.value)}
               />
             </div>
 
             <div className="modal-footer">
+
               <button
                 type="button"
-                className="UpdateAgain btn btn-info"
+                className="btn btn-secondary"
                 data-dismiss="modal"
-                onClick={e => updateDescription(e)}
-              >Update
+              >Close
               </button>
+
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={() => updateDescription(todo.task_id)}
+              >Save
+              </button>
+
             </div>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 export default UpdateTask;
