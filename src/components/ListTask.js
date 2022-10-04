@@ -28,14 +28,30 @@ const ListTask = () => {
 
   useEffect(() => {
     getTasks();
-  }, []);
+  }, []
+  );
+
+  const mapTask = todos.map(todo => (
+    <tr
+      className="h5"
+      key={todo.task_id}>
+      <td>{todo.task}</td>
+      <td><UpdateTask todo={todo} /></td>
+      <td>
+        <button
+          className="delete btn btn-secondary"
+          onClick={() => deleteTodo(todo.task_id)}
+        >Delete
+        </button>
+      </td>
+    </tr>
+  ));
 
   console.log(todos);
 
   return (
     <div>
       <table className="table mt-5">
-
         <thead className='h4'>
           <tr>
             <th>Task</th>
@@ -43,30 +59,7 @@ const ListTask = () => {
             <th></th>
           </tr>
         </thead>
-
-        <tbody>
-
-          {todos.map(todo => (
-            <tr
-              className="h5"
-              key={todo.task_id}>
-
-              <td>{todo.task}</td>
-
-              <td><UpdateTask todo={todo} /></td>
-
-              <td>
-                <button
-                  className="delete btn btn-secondary"
-                  onClick={() => deleteTodo(todo.task_id)}
-                >Delete
-                </button>
-              </td>
-
-            </tr>
-          ))}
-
-        </tbody>
+        <tbody>{mapTask}</tbody>
       </table>
     </div>
   );
